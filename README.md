@@ -1,3 +1,3 @@
 # Guessing Game
-Tue Dec 8 19:56:10 SLST 2020  
-The number of lines in the code is 29  
+Thu Dec 10 14:55:25 SLST 2020  
+The number of lines in the code is 33  

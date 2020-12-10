@@ -1,3 +1,16 @@
+value=-1
+function check() {
+	if  [ $1 -eq $2 ]
+	then
+		value=0
+	elif [ $1 -lt $2 ]
+	then
+		value=1
+	else
+		value=2
+	fi
+}
+
 check_value=$(ls -al | grep "^-" | wc -l)
 echo "How many files are available in this directory?"
 diff=5
@@ -5,25 +18,16 @@ while true
 do
 echo "Take a guess: "
 read choice
-if [ $choice == $check_value ]
+check $choice $check_value
+if [[ "$value" -eq 0 ]]
 then
 echo "You got the correct number!"
 exit
-elif [ $choice -gt $check_value ]
+elif [[ "$value" -eq 2 ]]
 then
-if [ `expr $choice - $check_value` -le 5 ]
-then
-echo "The number is close but still high"
-else
 echo "The number chosen is too high"
-fi
-elif [ $choice -lt $check_value ]
+elif [[ "$value" -eq 1 ]]
 then
-if [ `expr $check_value - $choice` -le 5 ]
-then
-echo "The number is close but still low"
-else
 echo "The number chosen is too low"
-fi
 fi
 done
